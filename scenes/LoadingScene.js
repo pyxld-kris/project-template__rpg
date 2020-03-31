@@ -17,7 +17,16 @@ export default class LoadingScene extends Scene {
   preload() {
     // Actual loading follows
     this.load.image("background", "../assets/background.png");
+    this.load.image("building-outer", "../assets/building-outer.png");
+    this.load.image("rock", "../assets/rock.png");
+    this.load.image("grass", "../assets/grass.png");
+    this.load.image("tree", "../assets/tree.png");
+    this.load.image("tree-trunk", "../assets/tree-trunk.png");
     this.load.spritesheet("character", "../assets/character.png", {
+      frameWidth: 16,
+      frameHeight: 19
+    });
+    this.load.spritesheet("npc", "../assets/npc.png", {
       frameWidth: 16,
       frameHeight: 19
     });

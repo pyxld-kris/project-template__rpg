@@ -1,20 +1,10 @@
 import Phaser from "phaser";
+import Character from "./Character.js";
 
-export default class Character extends Phaser.Physics.Arcade.Sprite {
+export default class Player extends Character {
   constructor(scene, x, y) {
     super(scene, x, y, "character");
     this.scene = scene;
-
-    // Add to rendering engine
-    scene.add.existing(this);
-    // Add to physics engine
-    scene.physics.add.existing(this, false); // second parameter is isStatic
-
-    this.setCollideWorldBounds(true);
-
-    this.setMaxVelocity(300, 300);
-    this.setDrag(1000);
-    this.setBounce(1, 1);
 
     // Create the animations we need from the player spritesheet
     const anims = scene.anims;
@@ -36,6 +26,7 @@ export default class Character extends Phaser.Physics.Arcade.Sprite {
       frameRate: 12,
       repeat: -1
     });
+    this.anims.play("character-front", true); // default starting anim
 
     // Track the arrow keys & OPQA
     const {
@@ -85,6 +76,9 @@ export default class Character extends Phaser.Physics.Arcade.Sprite {
       this.anims.play("character-side", true);
       this.setFlipX(false);
     }
+
+    // Keep this image visually correct
+    this.setDepth(this.y);
   }
 
   destroy() {
